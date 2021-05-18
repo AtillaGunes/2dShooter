@@ -17,5 +17,13 @@ public class Shooter : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
             Instantiate(bullet, playerPos.position, Quaternion.identity);
         }
+
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            {
+                Instantiate(bullet, playerPos.position, Quaternion.identity);
+            }
+        }
     }
 }

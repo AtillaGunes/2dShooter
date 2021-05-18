@@ -9,8 +9,11 @@ public class PlayerBehavior : MonoBehaviour
     public float speed;
     private Rigidbody2D rb;
     private Vector2 move;
+    private Vector2 moveI;
     public int health = 10;
     public Text healthDisplay;
+    public Joystick joystick;
+    
 
 
     void Start()
@@ -25,11 +28,15 @@ public class PlayerBehavior : MonoBehaviour
      if(health <= 0){
          SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
      }
-     Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-     move = moveInput.normalized * speed;
+     Vector2 moveJoy = new Vector2(joystick.Horizontal, joystick.Vertical);
+     move = moveJoy.normalized * speed;
+
+
+    
     }
 
     void FixedUpdate() {
         rb.MovePosition(rb.position + move * Time.fixedDeltaTime);
+        
     }
 }
